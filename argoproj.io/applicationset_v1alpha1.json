@@ -3774,9 +3774,6 @@
                     "additionalProperties": false
                   }
                 },
-                "required": [
-                  "elements"
-                ],
                 "type": "object",
                 "additionalProperties": false
               },
@@ -7542,9 +7539,6 @@
                               "additionalProperties": false
                             }
                           },
-                          "required": [
-                            "elements"
-                          ],
                           "type": "object",
                           "additionalProperties": false
                         },
@@ -15625,9 +15619,6 @@
                               "additionalProperties": false
                             }
                           },
-                          "required": [
-                            "elements"
-                          ],
                           "type": "object",
                           "additionalProperties": false
                         },
