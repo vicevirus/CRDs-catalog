@@ -34,7 +34,13 @@
                 },
                 "peeredNetworkIPRange": {
                   "description": "Immutable. Subnet IP range within the peered network. This is specified in CIDR notation with a slash and the subnet prefix size. You can optionally specify an IP address before the subnet prefix value. e.g. `192.168.0.0/29` would specify an IP range starting at 192.168.0.0 with a prefix size of 29 bits. `/16` would specify a prefix size of 16 bits, with an automatically determined IP within the peered VPC. If unspecified, a value of `/24` will be used.",
-                  "type": "string"
+                  "type": "string",
+                  "x-kubernetes-validations": [
+                    {
+                      "message": "the field is immutable",
+                      "rule": "self == oldSelf"
+                    }
+                  ]
                 },
                 "peeredNetworkRef": {
                   "description": "Immutable. The network definition that the workers are peered to. If this section is left empty, the workers will be peered to `WorkerPool.project_id` on the service producer network.",
@@ -71,7 +77,7 @@
                   ],
                   "properties": {
                     "external": {
-                      "description": "The compute network selflink of form \"projects/<project>/global/networks/<network>\", when not managed by KCC.",
+                      "description": "A reference to an externally managed Compute Network resource. Should be in the format `projects/<projectID>/global/networks/<network>`.",
                       "type": "string"
                     },
                     "name": {
@@ -84,6 +90,12 @@
                     }
                   },
                   "type": "object",
+                  "x-kubernetes-validations": [
+                    {
+                      "message": "the field is immutable",
+                      "rule": "self == oldSelf"
+                    }
+                  ],
                   "additionalProperties": false
                 }
               },
@@ -148,7 +160,7 @@
           ],
           "properties": {
             "external": {
-              "description": "The `projectID` field of a project, when not managed by KCC.",
+              "description": "The `projectID` field of a project, when not managed by Config Connector.",
               "type": "string"
             },
             "kind": {
@@ -168,7 +180,7 @@
           "additionalProperties": false
         },
         "resourceID": {
-          "description": "The `WorkerPool` name. If not given, the metadata.name will be used.",
+          "description": "The GCP resource identifier. If not given, the metadata.name will be used.",
           "type": "string"
         }
       },
@@ -214,7 +226,7 @@
           "type": "array"
         },
         "externalRef": {
-          "description": "A unique specifier for the CloudBuild workerpool resource in GCP.",
+          "description": "A unique Config Connector specifier for the resource in GCP.",
           "type": "string"
         },
         "observedGeneration": {
